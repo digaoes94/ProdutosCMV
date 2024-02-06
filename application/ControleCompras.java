@@ -21,6 +21,7 @@ public class ControleCompras {
 	public static boolean Menu() {
 		boolean continuar = true;
 		int escolha = 0;
+		
 		System.out.println("Digitar número do procedimento a executar");
 		System.out.println("1 - Adicionar produto");
 		System.out.println("2 - Remover produto");
