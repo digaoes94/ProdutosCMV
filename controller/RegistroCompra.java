@@ -22,11 +22,38 @@ public class RegistroCompra {
 			System.out.println("O produto é importado? Digite SIM ou NÃO");
 			String importado = scan.nextLine().toLowerCase();
 			
-			if (importado == "sim") {
-				produtosRevenda.add(InstanciaProdutoImportado());
-			}
-			if (importado == "não"){
-				produtosRevenda.add(InstanciaProdutoNacional());
+			Produto produto;
+			String produtoNome;
+			Double produtoPreco, icms, ipi, impostoAlfandega;
+			
+			switch (importado) {
+				case "sim":
+					System.out.println("Digite o nome do produto:");
+					produtoNome = scan.nextLine();
+					System.out.println("Digite o preço do produto:");
+					produtoPreco = scan.nextDouble();
+					System.out.println("Digite o imposto de entrada, no país, do produto:");
+					impostoAlfandega = scan.nextDouble();
+					System.out.println("Digite o ICMS do produto:");
+					icms = scan.nextDouble();
+					
+					produto = new ProdutoImportado(produtoNome, produtoPreco, icms, impostoAlfandega);
+					produtosRevenda.add(produto);
+				break;
+					
+				case "não":
+					System.out.println("Digite o nome do produto:");
+					produtoNome = scan.nextLine();
+					System.out.println("Digite o preço do produto:");
+					produtoPreco = scan.nextDouble();
+					System.out.println("Digite o imposto de entrada, no país, do produto:");
+					ipi = scan.nextDouble();
+					System.out.println("Digite o ICMS do produto:");
+					icms = scan.nextDouble();
+					
+					produto = new ProdutoNacional(produtoNome, produtoPreco, icms, ipi);
+					produtosRevenda.add(produto);
+				break;
 			}
 		}
 	}
@@ -65,43 +92,5 @@ public class RegistroCompra {
 		}
 		
 		System.out.println("Valor final da CMV: R$ "+ String.format("%.2f", valorTotal));
-	}
-	
-	//  CRIA PRODUTO IMPORTADO
-	private Produto InstanciaProdutoImportado() {
-		String produtoNome;
-		Double produtoPreco, icms, impostoAlfandega;
-		
-		System.out.println("Digite o nome do produto:");
-		produtoNome = scan.nextLine();
-		System.out.println("Digite o preço do produto:");
-		produtoPreco = scan.nextDouble();
-		System.out.println("Digite o imposto de entrada, no país, do produto:");
-		impostoAlfandega = scan.nextDouble();
-		System.out.println("Digite o ICMS do produto:");
-		icms = scan.nextDouble();
-		
-		Produto produto = new ProdutoImportado(produtoNome, produtoPreco, icms, impostoAlfandega);
-		
-		return produto;
-	}
-	
-	//  CRIA PRODUTO NACIONAL
-	private Produto InstanciaProdutoNacional() {
-		String produtoNome;
-		Double produtoPreco, icms, ipi;
-		
-		System.out.println("Digite o nome do produto:");
-		produtoNome = scan.nextLine();
-		System.out.println("Digite o preço do produto:");
-		produtoPreco = scan.nextDouble();
-		System.out.println("Digite o imposto de entrada, no país, do produto:");
-		ipi = scan.nextDouble();
-		System.out.println("Digite o ICMS do produto:");
-		icms = scan.nextDouble();
-		
-		Produto produto = new ProdutoNacional(produtoNome, produtoPreco, icms, ipi);
-		
-		return produto;
 	}
 }
