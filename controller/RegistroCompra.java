@@ -45,12 +45,26 @@ public class RegistroCompra {
 	
 	//  CONSULTAR PRODUTO
 	public void ConsultarProduto() {
+		System.out.println("Qual o nome do produto a ser consultado?");
+		String consultarProduto = scan.nextLine();
 		
+		for (Produto prod : produtosRevenda) {
+			if (prod.getProdutoNome() == consultarProduto) {
+				System.out.println(prod.toString());
+			}
+		}
 	}
 	
 	//  RESUMO DA COMPRA ATÉ O MOMENTO
 	public void ResumoCompra() {
+		double valorTotal = 0;
 		
+		for (Produto prod : produtosRevenda) {
+			valorTotal = valorTotal + prod.PrecoFinal();
+			System.out.println(prod.toString());
+		}
+		
+		System.out.println("Valor final da CMV: R$ "+ String.format("%.2f", valorTotal));
 	}
 	
 	//  CRIA PRODUTO IMPORTADO

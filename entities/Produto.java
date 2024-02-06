@@ -34,4 +34,9 @@ public class Produto {
 	public void setIcms(Double icms) {
 		this.icms = icms;
 	}
+	
+	public Double PrecoFinal() {
+		Double precoFinal = getProdutoPreco() * (1 + getIcms());
+		return precoFinal;
+	}
 }

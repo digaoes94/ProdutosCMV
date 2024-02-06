@@ -15,4 +15,17 @@ public class ProdutoNacional extends Produto {
 	public void setIpi(Double ipi) {
 		this.ipi = ipi;
 	}
+	
+	@Override
+	public Double PrecoFinal() {
+		Double precoFinal = getProdutoPreco() * (1 + getIcms() * (1 + getIpi()));
+		return precoFinal;
+	}
+	
+	public String toString() {
+		String resumo = "";
+		resumo += "Produto: " + getProdutoNome() + ". ICMS: " + String.format("%.2f", getIcms() + ". IPI: " + String.format("%.2f", getIpi()) + ".\n");
+		resumo += "Preço sem imposto: R$ " + String.format("%.2f", getProdutoPreco()) + ". Produto com imposto: R$ " + String.format("%.2f", PrecoFinal()) + ".";
+		return resumo;
+	}
 }
