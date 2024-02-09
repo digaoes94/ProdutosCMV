@@ -1,19 +1,17 @@
 package entities;
 
 public class ProdutoImportado extends Produto {
-	private Double impostoAlfandega;
 
-	public ProdutoImportado(String produtoNome, Double produtoPreco, Double icms, Double impostoAlfandega) {
-		super(produtoNome, produtoPreco, icms);
-		this.impostoAlfandega = impostoAlfandega;
+	public ProdutoImportado(String produtoNome, Double produtoPreco, Double icms, Double alternativo) {
+		super(produtoNome, produtoPreco, icms, alternativo);
 	}
 
 	// get set imposto alfândega
 	public Double getImpostoAlfandega() {
-		return impostoAlfandega;
+		return alternativo;
 	}
-	public void setImpostoAlfandega(Double impostoAlfandega) {
-		this.impostoAlfandega = impostoAlfandega;
+	public void setImpostoAlfandega(Double alternativo) {
+		this.alternativo = alternativo;
 	}
 	
 	@Override
@@ -22,10 +20,10 @@ public class ProdutoImportado extends Produto {
 		return precoFinal;
 	}
 	
-	public String toString() {
-		String resumo = "";
-		resumo += "Produto: " + getProdutoNome() + ". ICMS: " + String.format("%.2f", getIcms() + ". Imposto na Alfândega: " + String.format("%.2f", getImpostoAlfandega()) + ".\n");
-		resumo += "Preço sem imposto: R$ " + String.format("%.2f", getProdutoPreco()) + ". Produto com imposto: R$ " + String.format("%.2f", PrecoFinal()) + ".";
-		return resumo;
-	}
+//	public String toString() {
+//		String resumo = "";
+//		resumo += "Produto: " + getProdutoNome() + ". ICMS: " + String.format("%.2f", getIcms() + ". Imposto na Alfândega: " + String.format("%.2f", getImpostoAlfandega()) + ".\n");
+//		resumo += "Preço sem imposto: R$ " + String.format("%.2f", getProdutoPreco()) + ". Produto com imposto: R$ " + String.format("%.2f", PrecoFinal()) + ".";
+//		return resumo;
+//	}
 }

@@ -2,13 +2,14 @@ package entities;
 
 public class Produto {
 	private String produtoNome;
-	private Double produtoPreco;
-	private Double icms;
+	private Double produtoPreco, icms;
+	protected Double alternativo;
 	
-	public Produto(String produtoNome, Double produtoPreco, Double icms) {
+	public Produto(String produtoNome, Double produtoPreco, Double icms, Double alternativo) {
 		this.produtoNome = produtoNome;
 		this.produtoPreco = produtoPreco;
 		this.icms = icms;
+		this.alternativo = alternativo;
 	}
 
 	// get set nome do produto
@@ -33,6 +34,14 @@ public class Produto {
 	}
 	public void setIcms(Double icms) {
 		this.icms = icms;
+	}
+	
+	//  get set IPI/ALFANDEGA
+	public Double getAlternativo() {
+		return alternativo;
+	}
+	public void setAlternativo(Double alternativo) {
+		this.alternativo = alternativo;
 	}
 	
 	public Double PrecoFinal() {

@@ -74,6 +74,7 @@ public class ControleCompras {
 			case 3:
 				System.out.println("Qual o nome do produto a ser consultado?");
 				String consultarProduto = scan.next();
+				
 				System.out.println(registro.ConsultarProduto(consultarProduto));
 				
 				continuar = true;

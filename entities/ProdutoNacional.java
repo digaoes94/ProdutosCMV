@@ -1,19 +1,17 @@
 package entities;
 
 public class ProdutoNacional extends Produto {
-	private Double ipi;
 
-	public ProdutoNacional(String produtoNome, Double produtoPreco, Double icms, Double ipi) {
-		super(produtoNome, produtoPreco, icms);
-		this.ipi = ipi;
+	public ProdutoNacional(String produtoNome, Double produtoPreco, Double icms, Double alternativo) {
+		super(produtoNome, produtoPreco, icms, alternativo);
 	}
 
 	// get set imposto sobre produto industrializado
 	public Double getIpi() {
-		return ipi;
+		return alternativo;
 	}
-	public void setIpi(Double ipi) {
-		this.ipi = ipi;
+	public void setIpi(Double alternativo) {
+		this.alternativo = alternativo;
 	}
 	
 	@Override
@@ -22,10 +20,10 @@ public class ProdutoNacional extends Produto {
 		return precoFinal;
 	}
 	
-	public String toString() {
-		String resumo = "";
-		resumo += "Produto: " + getProdutoNome() + ". ICMS: " + String.format("%.2f", getIcms() + ". IPI: " + String.format("%.2f", getIpi()) + ".\n");
-		resumo += "Preço sem imposto: R$ " + String.format("%.2f", getProdutoPreco()) + ". Produto com imposto: R$ " + String.format("%.2f", PrecoFinal()) + ".";
-		return resumo;
-	}
+//	public String toString() {
+//		String resumo = "";
+//		resumo += "Produto: " + getProdutoNome() + ". ICMS: " + String.format("%.2f", getIcms() + ". IPI: " + String.format("%.2f", getIpi()) + ".\n");
+//		resumo += "Preço sem imposto: R$ " + String.format("%.2f", getProdutoPreco()) + ". Produto com imposto: R$ " + String.format("%.2f", PrecoFinal()) + ".";
+//		return resumo;
+//	}
 }

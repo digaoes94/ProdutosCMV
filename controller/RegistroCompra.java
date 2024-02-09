@@ -30,7 +30,7 @@ public class RegistroCompra {
 
 			Produto produtoImp = new ProdutoImportado(produtoNome, produtoPreco, icms, impostoAlfandega);
 			produtosRevenda.add(produtoImp);
-		} 
+		}
 		if (imp == false) {
 			System.out.println("Digite o nome do produto:");
 			produtoNome = scan.next();
@@ -65,9 +65,24 @@ public class RegistroCompra {
 
 		for (Produto prod : produtosRevenda) {
 			if (prod.getProdutoNome() == consultarProduto) {
-				retorna = prod.toString();
+				if (prod instanceof ProdutoImportado) {
+					retorna += "Produto: " + prod.getProdutoNome() + ". ICMS: " + String.format("%.2f", prod.getIcms()
+							+ ". Imposto na Alfândega: " + String.format("%.2f", prod.getAlternativo()) + ".\n");
+					retorna += "Preço sem imposto: R$ " + String.format("%.2f", prod.getProdutoPreco())
+							+ ". Produto com imposto: R$ " + String.format("%.2f", prod.PrecoFinal()) + ".";
+				}
+				if (prod instanceof ProdutoNacional) {
+					retorna += "Produto: " + prod.getProdutoNome() + ". ICMS: " + String.format("%.2f",
+							prod.getIcms() + ". IPI: " + String.format("%.2f", prod.getAlternativo()) + ".\n");
+					retorna += "Preço sem imposto: R$ " + String.format("%.2f", prod.getProdutoPreco())
+							+ ". Produto com imposto: R$ " + String.format("%.2f", prod.PrecoFinal()) + ".";
+				}
+			}
+			else {
+				retorna += "Produto não encontrado.";
 			}
 		}
+		
 		return retorna;
 	}
 
