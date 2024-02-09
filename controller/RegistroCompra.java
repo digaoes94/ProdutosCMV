@@ -13,6 +13,14 @@ public class RegistroCompra {
 	private Scanner scan = new Scanner(System.in);
 	protected List<Produto> produtosRevenda = new ArrayList<Produto>();
 
+	public List<Produto> getProdutosRevenda() {
+		return produtosRevenda;
+	}
+
+	public void setProdutosRevenda(List<Produto> produtosRevenda) {
+		this.produtosRevenda = produtosRevenda;
+	}
+
 	// ADICIONAR PRODUTO
 	public void AdicionarProduto(boolean imp) {
 		String produtoNome;
@@ -60,29 +68,22 @@ public class RegistroCompra {
 	}
 
 	// CONSULTAR PRODUTO
-	public String ConsultarProduto(String consultarProduto) {
+	public String ConsultarProduto(Produto prod) {
 		String retorna = "";
 
-		for (Produto prod : produtosRevenda) {
-			if (prod.getProdutoNome() == consultarProduto) {
-				if (prod instanceof ProdutoImportado) {
-					retorna += "Produto: " + prod.getProdutoNome() + ". ICMS: " + String.format("%.2f", prod.getIcms()
-							+ ". Imposto na Alfândega: " + String.format("%.2f", prod.getAlternativo()) + ".\n");
-					retorna += "Preço sem imposto: R$ " + String.format("%.2f", prod.getProdutoPreco())
-							+ ". Produto com imposto: R$ " + String.format("%.2f", prod.PrecoFinal()) + ".";
-				}
-				if (prod instanceof ProdutoNacional) {
-					retorna += "Produto: " + prod.getProdutoNome() + ". ICMS: " + String.format("%.2f",
-							prod.getIcms() + ". IPI: " + String.format("%.2f", prod.getAlternativo()) + ".\n");
-					retorna += "Preço sem imposto: R$ " + String.format("%.2f", prod.getProdutoPreco())
-							+ ". Produto com imposto: R$ " + String.format("%.2f", prod.PrecoFinal()) + ".";
-				}
-			}
-			else {
-				retorna += "Produto não encontrado.";
-			}
+		if (prod instanceof ProdutoImportado) {
+			retorna += "Produto: " + prod.getProdutoNome() + ". ICMS: " + String.format("%.2f",
+					prod.getIcms() + ". Imposto na Alfândega: " + String.format("%.2f", prod.getAlternativo()) + ".\n");
+			retorna += "Preço sem imposto: R$ " + String.format("%.2f", prod.getProdutoPreco())
+					+ ". Produto com imposto: R$ " + String.format("%.2f", prod.PrecoFinal()) + ".";
 		}
-		
+		if (prod instanceof ProdutoNacional) {
+			retorna += "Produto: " + prod.getProdutoNome() + ". ICMS: " + String.format("%.2f",
+					prod.getIcms() + ". IPI: " + String.format("%.2f", prod.getAlternativo()) + ".\n");
+			retorna += "Preço sem imposto: R$ " + String.format("%.2f", prod.getProdutoPreco())
+					+ ". Produto com imposto: R$ " + String.format("%.2f", prod.PrecoFinal()) + ".";
+		}
+
 		return retorna;
 	}
 

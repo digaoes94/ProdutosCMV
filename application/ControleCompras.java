@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.util.Locale;
 
 import controller.RegistroCompra;
+import entities.Produto;
 
 public class ControleCompras {
 	//  System.out.println("");
@@ -75,7 +76,16 @@ public class ControleCompras {
 				System.out.println("Qual o nome do produto a ser consultado?");
 				String consultarProduto = scan.next();
 				
-				System.out.println(registro.ConsultarProduto(consultarProduto));
+				for (Produto prod : registro.getProdutosRevenda()) {
+					if (prod.getProdutoNome() == consultarProduto) {
+						consultarProduto = registro.ConsultarProduto(prod);
+					}
+					else {
+						consultarProduto = "Produto não encontrado.";
+					}
+				}
+				
+				System.out.println(consultarProduto);
 				
 				continuar = true;
 				break;
